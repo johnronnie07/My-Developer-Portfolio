@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fajardo Family Pictures</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --purple:#8e1780; --indigo:#47093c; --card-bg:#c890c4e1; --shadow:0 4px 6px rgba(188, 64, 175, 0.596);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui, Segoe UI, Roboto, Arial, sans-serif;background:var(--purple);color:#fff;text-align:center}
+
+    header{
+      background:var(--indigo);
+      padding:16px 20px;
+      box-shadow:var(--shadow);
+      position:sticky; top:0; z-index:10;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+
+
+    header h1{
+      margin:0;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      font-weight: 900;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.15);
+    }
+
+    .auth-right{display:flex; align-items:center; gap:10px}
+    .auth-btn{
+      background:#6e1a60; color:#fff; border:none; padding:8px 12px; border-radius:8px; cursor:pointer;
+      box-shadow:var(--shadow); font-weight:700
+    }
+    .auth-btn:hover{filter:brightness(1.08)}
+    #welcomeText{opacity:.9}
+
+    .container{max-width:1100px;margin:24px auto;padding:0 16px}
+    .lead{opacity:.9}
+
+
+    .landing-card{
+      max-width:720px; margin:18px auto 0; padding:22px 20px; text-align:left;
+      background:var(--card-bg); color:#222; border-radius:14px; box-shadow:var(--shadow);
+    }
+    .landing-actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:10px}
+
+
+    .card{
+      max-width:720px; margin:18px auto 0; padding:22px 20px; text-align:left;
+      background:var(--card-bg); color:#222; border-radius:14px; box-shadow:var(--shadow);
+    }
+    label{display:block; margin:10px 0 6px; font-weight:600}
+    input[type="text"], input[type="email"]{
+      width:100%; padding:12px 14px; border-radius:10px; border:1px solid #bbb; font-size:1rem; outline:none;
+    }
+    input:focus{border-color:#8e1780; box-shadow:0 0 0 3px rgba(142,23,128,.15)}
+
+    /* Gallery */
+    .gallery{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin:20px 0 40px}
+    .card-photo{background:var(--card-bg);color:#222;width:clamp(220px,28vw,320px);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);transition:.15s}
+    .card-photo:hover{transform:translateY(-4px);box-shadow:0 10px 16px rgba(0,0,0,.35)}
+    .card-photo img{display:block;width:100%;height:200px;object-fit:cover;background:#ddd}
+    .meta{padding:12px 14px 16px}
+    .title{margin:0 0 6px;font-weight:600}
+    .desc{margin:0;font-size:.9rem;color:#444}
+
+    footer{color:#eee;padding:22px 0 40px;font-size:.9rem}
+    @media (max-width:480px){
+      header h1{font-size:1.2rem}
+      .card-photo img{height:170px}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>FAJARDO FAMILY PICTURES</h1>
+    <div class="auth-right">
+      <span id="welcomeText" style="display:none"></span>
+      <button id="signOutBtn" class="auth-btn" style="display:none">Sign out</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section id="landing" aria-live="polite">
+      <p class="lead">Welcome! Please sign in to view the family pictures.</p>
+      <div class="landing-card">
+        <h2 style="text-align:center;margin:0 0 8px">Continue to the gallery</h2>
+        <div class="landing-actions">
+          <button id="openSignupBtn" class="auth-btn">Sign in</button>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="signup" class="card" style="display:none">
+      <h2 style="text-align:center;margin:0 0 12px">Create your access</h2>
+      <form id="signupForm" novalidate>
+        <label for="fullName">Full name</label>
+        <input id="fullName" name="fullName" type="text" placeholder="e.g., John Ronnie Fajardo" required />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="name@example.com" required />
+
+        <label for="favFood">Favorite food (optional)</label>
+        <input id="favFood" name="favFood" type="text" placeholder="e.g., Pizza" />
+
+        <div class="landing-actions">
+          <button type="submit" class="auth-btn">Ok</button>
+          <button type="button" id="cancelSignupBtn" class="auth-btn" style="background:#5b164f">Cancel</button>
+        </div>
+        <small style="display:block;margin-top:8px;color:#444;text-align:center">
+          Filling out the form is just for fun and doesn't actually create an account or store your data on a server. It's all saved locally in your browser, so feel free to use any name or email you like!
+        </small>
+      </form>
+    </section>
+
+
+    <section id="gallery" style="display:none">
+      <p class="lead">A collection of memories to cherish.</p>
+
+      <div class="gallery">
+        <article class="card-photo">
+          <img src="56ac44c6-426a-446f-b278-48898aa5954c.jpg" alt="John Ronnie Fajardo" />
+          <div class="meta">
+            <h3 class="title">John Ronnie Fajardo</h3>
+            <p class="desc">Someone who likes taking photos and creating fun memories.</p>
+          </div>
+        </article>
+
+        <article class="card-photo">
+          <img src=" 510044471_1259201899325394_9109202389680459271_n.jpg" alt="Ronalie Fajardo" />
+          <div class="meta">
+            <h3 class="title">Ronalie Fajardo</h3>
+            <p class="desc">Loves spending time with pets and enjoys sweet treats.</p>
+          </div>
+        </article>
+
+        <article class="card-photo">
+          <img src="0b4d4dd1-bd29-4c56-9613-34b03925181d.jpg" alt="Rain Alliah Fajardo" />
+          <div class="meta">
+            <h3 class="title">Rain Alliah Fajardo</h3>
+            <p class="desc">Enjoys dressing up and exploring new places.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> FAMILY PICTURES
+    <p id="currentDate"></p>
+    <p id="phTime"></p>
+  </footer>
+
+  <script>
+
+    const LS_KEY = 'ffp_user';
+    const getUser = () => {
+      try { return JSON.parse(localStorage.getItem(LS_KEY) || 'null'); }
+      catch { return null; }
+    };
+    const saveUser = (u) => localStorage.setItem(LS_KEY, JSON.stringify(u));
+    const clearUser = () => localStorage.removeItem(LS_KEY);
+
+
+    const landing = document.getElementById('landing');
+    const signup = document.getElementById('signup');
+    const gallery = document.getElementById('gallery');
+
+    const openSignupBtn = document.getElementById('openSignupBtn');
+    const cancelSignupBtn = document.getElementById('cancelSignupBtn');
+    const signupForm = document.getElementById('signupForm');
+
+    const welcomeText = document.getElementById('welcomeText');
+    const signOutBtn = document.getElementById('signOutBtn');
+
+
+    function showLanding(){
+      landing.style.display = '';
+      signup.style.display = 'none';
+      gallery.style.display = 'none';
+      welcomeText.style.display = 'none';
+      signOutBtn.style.display = 'none';
+    }
+    function showSignup(){
+      landing.style.display = 'none';
+      signup.style.display = '';
+      gallery.style.display = 'none';
+      welcomeText.style.display = 'none';
+      signOutBtn.style.display = 'none';
+      document.getElementById('fullName').focus();
+    }
+    function showGallery(user){
+      landing.style.display = 'none';
+      signup.style.display = 'none';
+      gallery.style.display = '';
+      welcomeText.style.display = '';
+      signOutBtn.style.display = '';
+      welcomeText.textContent = `Welcome, ${user.name}`;
+    }
+
+
+    openSignupBtn.addEventListener('click', showSignup);
+    cancelSignupBtn.addEventListener('click', showLanding);
+
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const favFood = document.getElementById('favFood').value.trim();
+      if (name.length < 2) { alert('Please enter your full name.'); return; }
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!emailOk) { alert('Please enter a valid email.'); return; }
+
+      const user = { name, email, favFood, createdAt: new Date().toISOString() };
+      saveUser(user);
+      showGallery(user);
+    });
+
+    signOutBtn.addEventListener('click', () => {
+      clearUser();
+      showLanding();
+    });
+
+    function formatInPH(options) {
+      return new Intl.DateTimeFormat('en-PH', { timeZone: 'Asia/Manila', ...options }).format(new Date());
+    }
+    function updateClock() {
+      document.getElementById('year').textContent = formatInPH({ year: 'numeric' });
+      document.getElementById('currentDate').textContent = formatInPH({
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+      document.getElementById('phTime').textContent =
+        formatInPH({ hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true }) + ' (Philippine Time)';
+    }
+    updateClock();
+    setInterval(updateClock,)
+  </script>
+</body>
+</html>
